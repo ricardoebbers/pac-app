@@ -110,6 +110,12 @@ jobs:
     - name: Check Formatting
       run: mix format --check-formatted
 
+    - name: Run Credo
+      run: mix credo --strict
+
+    - name: Run Dialyzer
+      run: mix dialyzer
+
     # Step: Execute the tests.
     - name: Run tests
       run: mix test
