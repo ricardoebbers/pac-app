@@ -9,7 +9,10 @@ defmodule Pac.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      dialyzer: [
+        plt_file: {:no_warn, "priv/plts/project.plt"}
+      ]
     ]
   end
 
@@ -33,6 +36,7 @@ defmodule Pac.MixProject do
   defp deps do
     [
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.3", only: [:dev], runtime: false},
       {:ecto_sql, "~> 3.10"},
       {:esbuild, "~> 0.7", runtime: Mix.env() == :dev},
       {:finch, "~> 0.13"},
