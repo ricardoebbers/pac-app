@@ -37,6 +37,8 @@ defmodule Pac.MixProject do
       {:esbuild, "~> 0.7", runtime: Mix.env() == :dev},
       {:finch, "~> 0.13"},
       {:floki, ">= 0.30.0", only: :test},
+      {:flop_phoenix, "~> 0.21.1"},
+      {:flop, "~> 0.22.1"},
       {:jason, "~> 1.2"},
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_html, "~> 3.3"},
