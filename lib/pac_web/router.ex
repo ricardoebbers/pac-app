@@ -18,6 +18,33 @@ defmodule PacWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    live "/documents", DocumentLive.Index, :index
+    live "/documents/new", DocumentLive.Index, :new
+    live "/documents/:id/edit", DocumentLive.Index, :edit
+
+    live "/documents/:id", DocumentLive.Show, :show
+    live "/documents/:id/show/edit", DocumentLive.Show, :edit
+
+    live "/contacts", ContactLive.Index, :index
+    live "/contacts/new", ContactLive.Index, :new
+    live "/contacts/:id/edit", ContactLive.Index, :edit
+
+    live "/contacts/:id", ContactLive.Show, :show
+    live "/contacts/:id/show/edit", ContactLive.Show, :edit
+
+    live "/messages", MessageLive.Index, :index
+    live "/messages/new", MessageLive.Index, :new
+    live "/messages/:id/edit", MessageLive.Index, :edit
+
+    live "/messages/:id", MessageLive.Show, :show
+    live "/messages/:id/show/edit", MessageLive.Show, :edit
+
+    live "/attachments", AttachmentLive.Index, :index
+    live "/attachments/new", AttachmentLive.Index, :new
+    live "/attachments/:id/edit", AttachmentLive.Index, :edit
+
+    live "/attachments/:id", AttachmentLive.Show, :show
+    live "/attachments/:id/show/edit", AttachmentLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

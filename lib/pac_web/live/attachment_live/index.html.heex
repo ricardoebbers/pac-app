@@ -1,0 +1,41 @@
+<.header>
+  Listing Attachments
+  <:actions>
+    <.link patch={~p"/attachments/new"}>
+      <.button>New Attachment</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="attachments"
+  rows={@streams.attachments}
+  row_click={fn {_id, attachment} -> JS.navigate(~p"/attachments/#{attachment}") end}
+>
+  <:col :let={{_id, attachment}} label="Name"><%= attachment.name %></:col>
+  <:action :let={{_id, attachment}}>
+    <div class="sr-only">
+      <.link navigate={~p"/attachments/#{attachment}"}>Show</.link>
+    </div>
+    <.link patch={~p"/attachments/#{attachment}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, attachment}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: attachment.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="attachment-modal" show on_cancel={JS.patch(~p"/attachments")}>
+  <.live_component
+    module={PacWeb.AttachmentLive.FormComponent}
+    id={@attachment.id || :new}
+    title={@page_title}
+    action={@live_action}
+    attachment={@attachment}
+    patch={~p"/attachments"}
+  />
+</.modal>
